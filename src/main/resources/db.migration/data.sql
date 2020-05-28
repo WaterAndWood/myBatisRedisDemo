@@ -1,0 +1,2 @@
+insert into city_student.db_city (id, city_name, province_name) values ("jn", "jinan", "shandong")
+insert int city_student.db_student (id, student_name, age, sex, city_name) values ("wz", "wangzhen", 18, "male", "jinan")
