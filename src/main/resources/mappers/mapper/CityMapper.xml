@@ -10,8 +10,25 @@
      -->
 
     <select id="getCityByName" resultType="com.wz.myBatisRedisDemo.pojo.City">
-        select * from db_city where city_name = #{cityName}
+        select *
+--         id as id, city_name as cityName, province_name as provinceName
+        from db_city where city_name = #{cityName}
     </select>
+
+    <select id="getCityAll" resultType="com.wz.myBatisRedisDemo.pojo.City">
+        select * from db_city
+    </select>
+
+    <select id="getCityAllByProvince" resultType="com.wz.myBatisRedisDemo.pojo.City">
+        select * from db_city where province_name = #{provinceName}
+    </select>
+
+    <insert id="insertCity" useGeneratedKeys="true" parameterType="com.wz.myBatisRedisDemo.pojo.City">
+            <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
+                select replace(UUID(), '-', '')
+            </selectKey>
+            insert into db_city (id, city_name, province_name) values (#{id}, #{cityName}, #{provinceName})
+    </insert>
 
 <!--    &lt;!&ndash; statement，内容：sql语句。-->
 <!--       id：唯一标识，随便写，在同一个命名空间下保持唯一，使用动态代理之后要求和方法名保持一致-->

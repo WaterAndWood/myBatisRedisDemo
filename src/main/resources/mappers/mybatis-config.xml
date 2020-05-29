@@ -42,4 +42,8 @@
 <!--        <mapper resource="mappers/StudentMapper.xml"/>-->
 <!--        <mapper resource="mappers/CityMapper.xml"/>-->
 <!--    </mappers>-->
+    <!--mybatis配置将下划线和驼峰自动装换-->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
 </configuration>

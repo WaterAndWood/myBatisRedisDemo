@@ -2,11 +2,15 @@ package com.wz.myBatisRedisDemo.service.impl;
 
 import com.wz.myBatisRedisDemo.dao.CityMapper;
 import com.wz.myBatisRedisDemo.pojo.City;
+import com.wz.myBatisRedisDemo.pojo.CityVO;
 import com.wz.myBatisRedisDemo.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
+import java.util.UUID;
 
 @Service("CityService")
 public class CityServiceImpl implements CityService {
@@ -18,7 +22,26 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public City getCityByName(String cityName) {
-        return cityMapper.getCityByName(cityName);
+        City city = cityMapper.getCityByName(cityName);
+        return city;
     }
 
+    @Override
+    public List<City> getCityAll(String provinceName) {
+        List<City> ans;
+        if (provinceName == null || provinceName.isEmpty()) {
+            ans = cityMapper.getCityAll();
+        } else {
+            ans = cityMapper.getCityAllByProvince(provinceName);
+        }
+        return ans;
+    }
+
+    @Override
+    public String insertCity(City city) {
+        // mybatis生成uuid主键，并返回主键，dao对象的id为null
+        cityMapper.insertCity(city);
+        String id = city.getId();
+        return id;
+    }
 }

@@ -2,19 +2,15 @@ package com.wz.myBatisRedisDemo.pojo;
 
 import lombok.Data;
 
-import java.io.Serializable;
-
 /**
  *
- * 城市DO
+ * 城市VO
  *
  * @author Richa
  * @date 2020/5/29 14:48
  */
 @Data
-public class City implements Serializable {
-
-    private String id;
+public class CityVO {
 
     private String cityName;
 
