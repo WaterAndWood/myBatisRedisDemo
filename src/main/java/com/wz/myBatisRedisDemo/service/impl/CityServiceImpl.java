@@ -2,7 +2,6 @@ package com.wz.myBatisRedisDemo.service.impl;
 
 import com.wz.myBatisRedisDemo.dao.CityMapper;
 import com.wz.myBatisRedisDemo.pojo.City;
-import com.wz.myBatisRedisDemo.pojo.CityVO;
 import com.wz.myBatisRedisDemo.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,13 +9,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
-import java.util.UUID;
+
 
 @Service("CityService")
 public class CityServiceImpl implements CityService {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
+//    @Autowired(required = false)
     @Autowired
     private CityMapper cityMapper;
 
@@ -44,4 +44,16 @@ public class CityServiceImpl implements CityService {
         String id = city.getId();
         return id;
     }
+
+    @Override
+    public String updateCity(City city) {
+        cityMapper.updateCity(city);
+        return city.getId();
+    }
+
+    @Override
+    public void deleteCity(String cityName) {
+        cityMapper.deleteCity(cityName);
+    }
+
 }

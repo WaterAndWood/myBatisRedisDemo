@@ -9,7 +9,7 @@ import java.util.List;
 /**
  *
  * 使用mybatis实现城市的增删改查和student的关联查询
- * 一种形式CityMapper，另一种是dao
+ * 使用形式CityMapper
  *
  * @author Richa
  * @date 2020/5/28 15:58
@@ -49,4 +49,26 @@ public interface CityService {
      * @throws
      */
     String insertCity(City city);
+
+    /**
+     *
+     * 更改城市
+     *
+     * @author Richa on 2020/5/29 15:33
+     * @param city 城市id和属性
+     * @return
+     * @throws
+     */
+    String updateCity(City city);
+
+    /**
+     *
+     * 删除城市
+     *
+     * @author Richa on 2020/5/29 15:55
+     * @param
+     * @return
+     * @throws
+     */
+    void deleteCity(String cityName);
 }

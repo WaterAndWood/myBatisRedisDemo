@@ -7,11 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 /**
  *
  * 城市和学生操作的controller接口
+ * TODO:
+ * 关联查询：查询学生及其城市对应的省
+ * 关联查询：查询城市及其学生人数
+ * 学生分页查询排序
+ * 查询unique城市和省会
+ *
  *
  * @author Richa
  * @date 2020/5/28 16:04
@@ -40,4 +45,16 @@ public class CityController {
         city.setProvinceName(cityVO.getProvinceName());
         return cityService.insertCity(city);
     }
+
+    @RequestMapping(value = "/city", method = RequestMethod.PUT)
+    public String updateCity(@RequestBody  City city) {
+        return cityService.updateCity(city);
+    }
+
+    @RequestMapping(value = "/city/{cityName}", method = RequestMethod.DELETE)
+    public void deleteCity(@PathVariable("cityName") String cityName) {
+        cityService.deleteCity(cityName);
+    }
+
+
 }

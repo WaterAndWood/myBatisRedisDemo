@@ -30,6 +30,18 @@
             insert into db_city (id, city_name, province_name) values (#{id}, #{cityName}, #{provinceName})
     </insert>
 
+    <update id="updateCity" useGeneratedKeys="true" parameterType="com.wz.myBatisRedisDemo.pojo.City">
+        update db_city
+        <trim prefix="set" suffixOverrides=",">
+            <if test="cityName != null">city_name = #{cityName},</if>
+            <if test="provinceName != null">province_name = #{provinceName}</if>
+        </trim>
+        where (id = #{id});
+    </update>
+
+    <delete id="deleteCity" parameterType="com.wz.myBatisRedisDemo.pojo.City">
+        delete from db_city where city_name = #{cityName};
+    </delete>
 <!--    &lt;!&ndash; statement，内容：sql语句。-->
 <!--       id：唯一标识，随便写，在同一个命名空间下保持唯一，使用动态代理之后要求和方法名保持一致-->
 <!--       resultType：sql语句查询结果集的封装类型，使用动态代理之后和方法的返回类型一致；resultMap：二选一-->
