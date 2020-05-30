@@ -3,53 +3,58 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- mapper:根标签，namespace：命名空间，随便写，一般保证命名空间唯一 -->
-<mapper namespace="CityDao">
+<mapper namespace="com.wz.myBatisRedisDemo.dao.StudentMapper">
     <!-- statement，内容：sql语句。id：唯一标识，随便写，在同一个命名空间下保持唯一
        resultType：sql语句查询结果集的封装类型,tb_user即为数据库中的表
      -->
-    <!--<select id="queryUserById" resultType="com.zpc.mybatis.pojo.User">-->
-    <!--select * from tb_user where id = #{id}-->
-    <!--</select>-->
+    <resultMap id="BaseResult" type="com.wz.myBatisRedisDemo.pojo.Student">
+        <result column="id" property="id" />
+        <result column="student_name" property="studentName" />
+        <result column="age" property="age" />
+        <result column="sex" property="sex" />
+        <result column="city_name" property="cityName" />
+    </resultMap>
 
-    <!--使用别名-->
-    <select id="queryCityByName" resultType="com.wz.myBatisRedisDemo.pojo.City">
-        select
-        dcity.id as id,
-        dcity.city_name as cityName,
-        dcity.province_name as provinceName
-        from
-        db_city dcity
-        where dcity.city_name = #{cityName};
+    <select id="getStudent" resultMap="BaseResult">
+        select * from db_student
+        where
+        1 = 1
+        <if test="studentVO.studentName != null and studentVO.studentName != ''">
+            and student_name = #{studentVO.studentName}
+        </if>
+        <if test="studentVO.age != null">
+            and age = #{studentVO.age}
+        </if>
+        <if test="studentVO.sex != null and studentVO.sex != ''">
+            and sex = #{studentVO.sex}
+        </if>
+        <if test="studentVO.cityName != null and studentVO.cityName !=''">
+            and city_name = #{studentVO.cityName}
+        </if>
     </select>
 
     <!--插入数据-->
-    <insert id="createCity" parameterType="com.wz.myBatisRedisDemo.pojo.City">
+    <insert id="insertStudent" useGeneratedKeys="true" parameterType="com.wz.myBatisRedisDemo.pojo.Student">
         <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
             select replace(UUID(), '-', '')
         </selectKey>
-        insert into db_city (id, city_name, province_name) values (#{id}, #{cityName}, #{provinceName})
+        insert into db_student (id, student_name, age, sex, city_name)
+        values (#{id}, #{studentName}, #{age}, #{sex}, #{cityName})
     </insert>
 
-    <select id="queryUniqueCity" resultType="com.wz.myBatisRedisDemo.pojo.City">
-        select * from db_city group by province_name
-    </select>
+    <update id="updateStudent" parameterType="com.wz.myBatisRedisDemo.pojo.Student">
+        UPDATE db_student
+        <trim prefix="set" suffixOverrides=",">
+            <if test="studentName != null">student_name = #{studentName},</if>
+            <if test="age != null">age = #{age},</if>
+            <if test="sex != null">sex = #{sex},</if>
+            <if test="cityName != null">city_name = #{cityName}</if>
+        </trim>
+        WHERE
+        (id = #{id});
+    </update>
 
-<!--    <update id="updateUser" parameterType="com.inspur.mybatis.pojo.User">-->
-<!--        UPDATE tb_user-->
-<!--        <trim prefix="set" suffixOverrides=",">-->
-<!--            <if test="userName!=null">user_name = #{userName},</if>-->
-<!--            <if test="password!=null">password = #{password},</if>-->
-<!--            <if test="name!=null">name = #{name},</if>-->
-<!--            <if test="age!=null">age = #{age},</if>-->
-<!--            <if test="sex!=null">sex = #{sex},</if>-->
-<!--            <if test="birthday!=null">birthday = #{birthday},</if>-->
-<!--            updated = now(),-->
-<!--        </trim>-->
-<!--        WHERE-->
-<!--        (id = #{id});-->
-<!--    </update>-->
-
-<!--    <delete id="deleteUser">-->
-<!--        delete from tb_user where id=#{id}-->
-<!--    </delete>-->
+    <delete id="deleteStudent" parameterType="java.lang.String">
+        delete from db_student where student_name=#{studentName}
+    </delete>
 </mapper>

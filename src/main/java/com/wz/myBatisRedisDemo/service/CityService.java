@@ -1,7 +1,6 @@
 package com.wz.myBatisRedisDemo.service;
 
 import com.wz.myBatisRedisDemo.pojo.City;
-import com.wz.myBatisRedisDemo.pojo.CityVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
