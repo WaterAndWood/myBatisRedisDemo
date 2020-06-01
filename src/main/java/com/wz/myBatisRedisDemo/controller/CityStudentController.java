@@ -13,7 +13,7 @@ import java.util.List;
  *
  * 城市和学生操作的controller接口
  * 关联查询：查询学生及其城市对应的省
- *
+ * 关联查询：查询城市和对应学生数
  *
  * @author Richa
  * @date 2020/5/28 16:04
