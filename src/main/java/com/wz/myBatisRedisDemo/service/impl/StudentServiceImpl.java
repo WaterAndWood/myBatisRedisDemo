@@ -4,6 +4,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.wz.myBatisRedisDemo.dao.StudentMapper;
 import com.wz.myBatisRedisDemo.pojo.Student;
+import com.wz.myBatisRedisDemo.pojo.StudentProvince;
 import com.wz.myBatisRedisDemo.pojo.StudentVO;
 import com.wz.myBatisRedisDemo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,10 @@ public class StudentServiceImpl implements StudentService {
     public String updateStudent(Student student) {
         studentMapper.updateStudent(student);
         return student.getId();
+    }
+
+    @Override
+    public StudentProvince getStudentProvince(String studentName) {
+        return studentMapper.getStudentProvince(studentName);
     }
 }

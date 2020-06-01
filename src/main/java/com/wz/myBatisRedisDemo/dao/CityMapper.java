@@ -1,12 +1,11 @@
 package com.wz.myBatisRedisDemo.dao;
 
 import com.wz.myBatisRedisDemo.pojo.City;
-import com.wz.myBatisRedisDemo.pojo.CityVO;
+import com.wz.myBatisRedisDemo.pojo.CityStuNumVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
-import javax.crypto.CipherInputStream;
 import java.util.List;
 
 /**
@@ -31,4 +30,6 @@ public interface CityMapper {
     void updateCity(City city);
 
     void deleteCity(String cityName);
+
+    List<CityStuNumVO> getCityStuNum(String cityName);
 }

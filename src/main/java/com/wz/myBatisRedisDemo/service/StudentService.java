@@ -2,6 +2,7 @@ package com.wz.myBatisRedisDemo.service;
 
 import com.github.pagehelper.Page;
 import com.wz.myBatisRedisDemo.pojo.Student;
+import com.wz.myBatisRedisDemo.pojo.StudentProvince;
 import com.wz.myBatisRedisDemo.pojo.StudentVO;
 
 import java.util.List;
@@ -60,4 +61,15 @@ public interface StudentService {
      * @throws
      */
     void deleteStudent(String studentName);
+
+    /**
+     *
+     * 学生+省份
+     *
+     * @author Richa on 2020/5/31 14:56
+     * @param studentName 学生名
+     * @return
+     * @throws
+     */
+    StudentProvince getStudentProvince(String studentName);
 }

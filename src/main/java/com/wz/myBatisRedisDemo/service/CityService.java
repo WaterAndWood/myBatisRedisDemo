@@ -1,6 +1,7 @@
 package com.wz.myBatisRedisDemo.service;
 
 import com.wz.myBatisRedisDemo.pojo.City;
+import com.wz.myBatisRedisDemo.pojo.CityStuNumVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -70,4 +71,15 @@ public interface CityService {
      * @throws
      */
     void deleteCity(String cityName);
+
+    /**
+     *
+     * 城市+对应的学生数量
+     *
+     * @author Richa on 2020/5/31 14:50
+     * @param cityName 城市名
+     * @return
+     * @throws
+     */
+    List<CityStuNumVO> getCityStuNum(String cityName);
 }

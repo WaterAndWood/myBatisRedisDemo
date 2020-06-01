@@ -1,10 +1,7 @@
 package com.wz.myBatisRedisDemo.controller;
 
 import com.github.pagehelper.Page;
-import com.wz.myBatisRedisDemo.pojo.City;
-import com.wz.myBatisRedisDemo.pojo.CityVO;
-import com.wz.myBatisRedisDemo.pojo.Student;
-import com.wz.myBatisRedisDemo.pojo.StudentVO;
+import com.wz.myBatisRedisDemo.pojo.*;
 import com.wz.myBatisRedisDemo.service.CityService;
 import com.wz.myBatisRedisDemo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +13,6 @@ import java.util.List;
  *
  * 城市和学生操作的controller接口
  * 关联查询：查询学生及其城市对应的省
- * 关联查询：查询城市及其学生人数
  *
  *
  * @author Richa
@@ -88,5 +84,15 @@ public class CityStudentController {
     @RequestMapping(value = "/student", method = RequestMethod.PUT)
     public String updateStudent(@RequestBody Student student) {
         return studentService.updateStudent(student);
+    }
+
+    @RequestMapping(value = "/city/student", method = RequestMethod.GET)
+    public List<CityStuNumVO> getCityStuNum(@RequestParam(name = "cityName", required = false) String cityName) {
+        return cityService.getCityStuNum(cityName);
+    }
+
+    @RequestMapping(value = "/student/{stuName}/province", method = RequestMethod.GET)
+    public StudentProvince getStudentProvince(@PathVariable("stuName") String studentName) {
+        return studentService.getStudentProvince(studentName);
     }
 }

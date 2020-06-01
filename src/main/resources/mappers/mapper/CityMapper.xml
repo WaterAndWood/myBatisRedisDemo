@@ -42,6 +42,17 @@
     <delete id="deleteCity" parameterType="com.wz.myBatisRedisDemo.pojo.City">
         delete from db_city where city_name = #{cityName};
     </delete>
+
+    <select id="getCityStuNum" resultType="com.wz.myBatisRedisDemo.pojo.CityStuNumVO">
+
+        select c.id, c.city_name, c.province_name, s.student_num
+        from db_city c,
+        (select city_name, count(1) as student_num from db_student group by city_name) as s
+        where c.city_name = s.city_name
+        <if test="cityName != null and cityName != ''">
+            and c.city_name = #{cityName}
+        </if>
+    </select>
 <!--    &lt;!&ndash; statement，内容：sql语句。-->
 <!--       id：唯一标识，随便写，在同一个命名空间下保持唯一，使用动态代理之后要求和方法名保持一致-->
 <!--       resultType：sql语句查询结果集的封装类型，使用动态代理之后和方法的返回类型一致；resultMap：二选一-->

@@ -2,6 +2,7 @@ package com.wz.myBatisRedisDemo.service.impl;
 
 import com.wz.myBatisRedisDemo.dao.CityMapper;
 import com.wz.myBatisRedisDemo.pojo.City;
+import com.wz.myBatisRedisDemo.pojo.CityStuNumVO;
 import com.wz.myBatisRedisDemo.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,4 +57,8 @@ public class CityServiceImpl implements CityService {
         cityMapper.deleteCity(cityName);
     }
 
+    @Override
+    public List<CityStuNumVO> getCityStuNum(String cityName) {
+        return cityMapper.getCityStuNum(cityName);
+    }
 }

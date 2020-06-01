@@ -2,6 +2,7 @@ package com.wz.myBatisRedisDemo.dao;
 
 import com.github.pagehelper.Page;
 import com.wz.myBatisRedisDemo.pojo.Student;
+import com.wz.myBatisRedisDemo.pojo.StudentProvince;
 import com.wz.myBatisRedisDemo.pojo.StudentVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -19,4 +20,6 @@ public interface StudentMapper {
     void deleteStudent(String studentName);
 
     void updateStudent(Student student);
+
+    StudentProvince getStudentProvince(String studentName);
 }
