@@ -13,6 +13,9 @@ import java.io.Serializable;
  */
 @Data
 public class StudentProvince implements Serializable {
+
+    private static final Long serialVersionUID = 5L;
+
     private String id;
 
     private String studentName;

@@ -22,4 +22,6 @@ public interface StudentMapper {
     void updateStudent(Student student);
 
     StudentProvince getStudentProvince(String studentName);
+
+    Student getStudentById(String id);
 }

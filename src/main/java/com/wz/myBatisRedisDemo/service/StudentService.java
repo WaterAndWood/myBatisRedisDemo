@@ -72,4 +72,15 @@ public interface StudentService {
      * @throws
      */
     StudentProvince getStudentProvince(String studentName);
+
+    /**
+     *
+     * 从redis获取学生对象
+     *
+     * @author Richa on 2020/6/26 9:58
+     * @param
+     * @return
+     * @throws
+     */
+    Student getStudentById(String id);
 }

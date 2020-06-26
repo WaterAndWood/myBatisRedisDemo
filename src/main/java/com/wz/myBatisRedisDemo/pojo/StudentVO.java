@@ -14,6 +14,8 @@ import java.io.Serializable;
 @Data
 public class StudentVO implements Serializable {
 
+    private static final Long serialVersionUID = 6L;
+
     private String studentName;
 
     private Integer age;

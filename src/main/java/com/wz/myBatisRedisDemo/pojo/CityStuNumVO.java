@@ -14,6 +14,8 @@ import java.io.Serializable;
 @Data
 public class CityStuNumVO implements Serializable {
 
+    private static final Long serialVersionUID = 3L;
+
     private String id;
 
     private String cityName;

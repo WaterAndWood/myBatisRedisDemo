@@ -95,4 +95,9 @@ public class CityStudentController {
     public StudentProvince getStudentProvince(@PathVariable("stuName") String studentName) {
         return studentService.getStudentProvince(studentName);
     }
+
+    @RequestMapping(value = "/student/{id}", method = RequestMethod.GET)
+    public Student getStudentById(@PathVariable(value = "id") String id) {
+        return studentService.getStudentById(id);
+    }
 }

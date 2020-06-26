@@ -63,4 +63,8 @@
         from db_city c, db_student s
         where c.city_name = s.city_name and s.student_name = #{studentName}
     </select>
+
+    <select id="getStudentById" parameterType="java.lang.String" resultType="com.wz.myBatisRedisDemo.pojo.Student">
+        select * from db_student where 1 = 1 and id = #{id};
+    </select>
 </mapper>
