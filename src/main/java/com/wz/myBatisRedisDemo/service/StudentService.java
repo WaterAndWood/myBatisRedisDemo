@@ -43,6 +43,8 @@ public interface StudentService {
     /**
      *
      * 修改student
+     * 如果缓存不存在，则结束
+     * 如果缓存存在，则删除
      *
      * @author Richa on 2020/5/30 23:50
      * @param student id=id
@@ -53,14 +55,14 @@ public interface StudentService {
 
     /**
      *
-     * description
+     *
      *
      * @author Richa on 2020/5/30 23:53
-     * @param studentName
+     * @param id
      * @return
      * @throws
      */
-    void deleteStudent(String studentName);
+    void deleteStudent(String id);
 
     /**
      *
@@ -78,8 +80,8 @@ public interface StudentService {
      * 从redis获取学生对象
      *
      * @author Richa on 2020/6/26 9:58
-     * @param
-     * @return
+     * @param id 学生id
+     * @return Student
      * @throws
      */
     Student getStudentById(String id);

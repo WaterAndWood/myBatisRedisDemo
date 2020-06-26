@@ -12,7 +12,13 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
-
+/**
+ *
+ * 从配置文件中获得factory配置
+ *
+ * @author Richa
+ * @date 2020/6/26 18:07
+ */
 @Configuration
 public class RedisTemplateConfig {
 

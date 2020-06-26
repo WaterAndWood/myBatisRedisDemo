@@ -17,7 +17,7 @@ public interface StudentMapper {
 
     void insertStudent(Student student);
 
-    void deleteStudent(String studentName);
+    void deleteStudent(String id);
 
     void updateStudent(Student student);
 

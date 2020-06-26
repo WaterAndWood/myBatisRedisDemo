@@ -55,7 +55,7 @@
     </update>
 
     <delete id="deleteStudent" parameterType="java.lang.String">
-        delete from db_student where student_name=#{studentName}
+        delete from db_student where id=#{id}
     </delete>
 
     <select id="getStudentProvince" resultType="com.wz.myBatisRedisDemo.pojo.StudentProvince">

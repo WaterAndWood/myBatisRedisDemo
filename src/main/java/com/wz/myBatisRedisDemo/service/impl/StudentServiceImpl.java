@@ -47,13 +47,29 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void deleteStudent(String studentName) {
-        studentMapper.deleteStudent(studentName);
+    public void deleteStudent(String id) {
+        studentMapper.deleteStudent(id);
+        // 缓存存在，则删除缓存
+        RedisTemplate<String, Student> redisTemplate = redisTemplateConfig.redisTemplateKeyString();
+        String key = "student_" + id;
+        boolean hasKey = redisTemplate.hasKey(key);
+        if (hasKey) {
+            redisTemplate.delete(key);
+            logger.info("StudentServiceImpl.deleteStudent : 删除缓存中的学生 >> " + id);
+        }
     }
 
     @Override
     public String updateStudent(Student student) {
         studentMapper.updateStudent(student);
+        // 缓存存在，则删除缓存
+        RedisTemplate<String, Student> redisTemplate = redisTemplateConfig.redisTemplateKeyString();
+        String key = "student_" + student.getId();
+        boolean hasKey = redisTemplate.hasKey(key);
+        if (hasKey) {
+            redisTemplate.delete(key);
+            logger.info("StudentServiceImpl.deleteStudent : 删除缓存中的学生 >> " + student.getStudentName());
+        }
         return student.getId();
     }
 
@@ -68,16 +84,17 @@ public class StudentServiceImpl implements StudentService {
         ValueOperations<String, Student> operations = redisTemplate.opsForValue();
 
         // 缓存中有key
-        boolean hasKey = redisTemplate.hasKey(id);
+        String key = "student_" + id;
+        boolean hasKey = redisTemplate.hasKey(key);
         if(hasKey) {
-            Student student = operations.get(id);
+            Student student = operations.get(key);
             logger.info("StudentServiceImpl.getStudentById() : 从缓存中获取了学生 >> " + student.getStudentName());
             return student;
         }
         // 数据库中查询
         Student student = studentMapper.getStudentById(id);
         // 插入缓存
-        operations.set(id, student, 180, TimeUnit.SECONDS);
+        operations.set(key, student, 180, TimeUnit.SECONDS);
         logger.info("StudentServiceImpl.getStudentById() : 向缓存中插入学生 >> " + student.getStudentName());
         return student;
     }
